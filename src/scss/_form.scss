@@ -29,11 +29,16 @@
     ul {
         display: block;
         flex-direction: column;
-    }
 
-    li {
-        list-style-type: none;
-        font-size: 1.5rem;
+        li {
+            display: flex;
+            gap: 30px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            list-style-type: none;
+            font-size: 1.5rem;
+        }
     }
 }
 
