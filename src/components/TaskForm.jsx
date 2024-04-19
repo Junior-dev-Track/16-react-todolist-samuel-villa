@@ -8,8 +8,12 @@ export function TodoItem() {
 export function TodoList() {
   return (
     <ul>
-      <div className="liDiv"><input type="checkbox" id="myCheckbox" name="myCheckbox" value="checkboxValue"></input><li>Task 1</li></div>
-      <div className="liDiv"><input type="checkbox" id="myCheckbox" name="myCheckbox" value="checkboxValue"></input><li>Task 2</li></div>
+      <li>
+        <input type="checkbox" /> Item 1
+      </li>
+      <li>
+        <input type="checkbox" /> Item 2
+      </li>
     </ul>
   );
 }
