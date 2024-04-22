@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useImmer } from 'use-immer';
 
 
 export function TaskForm() {
@@ -23,6 +24,16 @@ export function TaskForm() {
     }
   };
 
+  const handleCheck = (id) => {
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.done = !todo.done
+      }
+      return todo
+    })
+    setTodos(newTodos)
+  }
+
   const handleDeleteTodo = (id) => {
     const newTodos = todos.filter(todo => todo.id !== id);
     setTodos(newTodos);
@@ -43,6 +54,12 @@ export function TaskForm() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
+            <input 
+              type="checkbox" 
+              id={todo.id}
+              name={todo.title} 
+              checked={todo.done}
+              onChange={() => handleCheck(todo.id)}/>
             {todo.title}
             <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
           </li>
