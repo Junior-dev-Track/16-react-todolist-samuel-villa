@@ -5,7 +5,8 @@ import { useImmer } from 'use-immer';
 export function TaskForm() {
 
   const [todos, setTodos] = useState([]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState('');  
+  const [nextId, setNextId] = useState(0);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -15,12 +16,15 @@ export function TaskForm() {
     event.preventDefault();
     if (inputValue.trim() !== '') {
       const newTodo = {
-        id: todos.length - 1,
+        id: nextId,
         title: inputValue,
         done: false
       };
       setTodos([...todos, newTodo]);
       setInputValue('');
+      
+      const newId = newTodo.id + 1;
+      setNextId(newId)      
     }
   };
 
