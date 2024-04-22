@@ -4,7 +4,12 @@ import { useImmer } from 'use-immer';
 
 export function TaskForm() {
 
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    }
+  });
   const [inputValue, setInputValue] = useState('');
   const [nextId, setNextId] = useState(0);
 
@@ -12,13 +17,6 @@ export function TaskForm() {
     // localStorage sync
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
-
-
-  const updateLocalStorage = (todos) => {
-    const newTodos = todos
-    localStorage.clear()
-    localStorage.setItem('todos', JSON.stringify(newTodos));
-  }
 
 
   const handleInputChange = (event) => {
@@ -33,13 +31,12 @@ export function TaskForm() {
         title: inputValue,
         done: false
       };
-      setTodos([...todos, newTodo]);
+      const newTodos = [...todos, newTodo]
+      setTodos(newTodos);
       setInputValue('');
 
       const newId = newTodo.id + 1;
       setNextId(newId)
-      const todoList = [...todos]
-      updateLocalStorage(todoList)
     }
   };
 
@@ -51,7 +48,6 @@ export function TaskForm() {
       return todo
     })
     setTodos(newTodos)
-    updateLocalStorage(newTodos)
   };
 
   const handleDeleteTodo = (id) => {
@@ -60,7 +56,6 @@ export function TaskForm() {
     if (todoToDelete?.done) {
       const newTodos = todos.filter(todo => todo.id !== id);
       setTodos(newTodos);
-      updateLocalStorage(newTodos);
     }
   };
 
