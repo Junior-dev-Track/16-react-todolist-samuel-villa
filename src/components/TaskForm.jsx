@@ -5,7 +5,7 @@ import { useImmer } from 'use-immer';
 export function TaskForm() {
 
   const [todos, setTodos] = useState([]);
-  const [inputValue, setInputValue] = useState('');  
+  const [inputValue, setInputValue] = useState('');
   const [nextId, setNextId] = useState(0);
 
   useEffect(() => {
@@ -38,8 +38,7 @@ export function TaskForm() {
 
       const newId = newTodo.id + 1;
       setNextId(newId)
-      
-      let todoList = [...todos]
+      const todoList = [...todos]
       updateLocalStorage(todoList)
     }
   };
@@ -52,15 +51,17 @@ export function TaskForm() {
       return todo
     })
     setTodos(newTodos)
-
     updateLocalStorage(newTodos)
   };
 
   const handleDeleteTodo = (id) => {
-    const newTodos = todos.filter(todo => todo.id !== id);
-    setTodos(newTodos);
+    const todoToDelete = todos.find(todo => todo.id === id);
 
-    updateLocalStorage(newTodos)
+    if (todoToDelete?.done) {
+      const newTodos = todos.filter(todo => todo.id !== id);
+      setTodos(newTodos);
+      updateLocalStorage(newTodos);
+    }
   };
 
   return (
@@ -78,12 +79,12 @@ export function TaskForm() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               id={todo.id}
-              name={todo.title} 
+              name={todo.title}
               checked={todo.done}
-              onChange={() => handleCheck(todo.id)}/>
+              onChange={() => handleCheck(todo.id)} />
             <label htmlFor={todo.id}>{todo.title}</label>
             <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
           </li>
