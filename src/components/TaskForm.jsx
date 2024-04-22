@@ -9,6 +9,7 @@ export function TaskForm() {
   const [nextId, setNextId] = useState(0);
 
   useEffect(() => {
+    // localStorage sync
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
