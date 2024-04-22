@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useImmer } from 'use-immer';
 
 
@@ -8,7 +8,18 @@ export function TaskForm() {
   const [inputValue, setInputValue] = useState('');  
   const [nextId, setNextId] = useState(0);
 
-  
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+
+  const updateLocalStorage = (todos) => {
+    const newTodos = todos
+    localStorage.clear()
+    localStorage.setItem('todos', JSON.stringify(newTodos));
+  }
+
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -25,7 +36,10 @@ export function TaskForm() {
       setInputValue('');
 
       const newId = newTodo.id + 1;
-      setNextId(newId)      
+      setNextId(newId)
+      
+      let todoList = [...todos]
+      updateLocalStorage(todoList)
     }
   };
 
@@ -37,11 +51,15 @@ export function TaskForm() {
       return todo
     })
     setTodos(newTodos)
-  }
+
+    updateLocalStorage(newTodos)
+  };
 
   const handleDeleteTodo = (id) => {
     const newTodos = todos.filter(todo => todo.id !== id);
     setTodos(newTodos);
+
+    updateLocalStorage(newTodos)
   };
 
   return (
