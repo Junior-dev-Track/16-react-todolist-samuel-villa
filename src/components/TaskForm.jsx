@@ -60,7 +60,7 @@ export function TaskForm() {
               name={todo.title} 
               checked={todo.done}
               onChange={() => handleCheck(todo.id)}/>
-            {todo.title}
+            <label for={todo.id}>{todo.title}</label>
             <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
           </li>
         ))}
