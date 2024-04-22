@@ -4,11 +4,12 @@ import { useImmer } from 'use-immer';
 
 export function TaskForm() {
 
+  // const [todos, setTodos] = useState([])
   const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem("todos");
     if (savedTodos) {
       return JSON.parse(savedTodos);
-    }
+    } 
   });
   const [inputValue, setInputValue] = useState('');
   const [nextId, setNextId] = useState(0);
