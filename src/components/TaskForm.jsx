@@ -8,6 +8,7 @@ export function TaskForm() {
   const [inputValue, setInputValue] = useState('');  
   const [nextId, setNextId] = useState(0);
 
+  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -22,7 +23,7 @@ export function TaskForm() {
       };
       setTodos([...todos, newTodo]);
       setInputValue('');
-      
+
       const newId = newTodo.id + 1;
       setNextId(newId)      
     }
