@@ -4,13 +4,17 @@ import './App.css'
 import './scss/style.scss'
 import Header from './components/Header'
 import { TaskForm } from './components/TaskForm.jsx'
+import { Filter } from './components/Filter.jsx'
 
 function App() {
+
+  const [filter, setFilter] = useState('all');
 
   return (
     <>
     <Header />
-    <TaskForm />
+    <TaskForm filter={ filter } />
+    <Filter setFilter={ setFilter } />
     </>
   )
 }

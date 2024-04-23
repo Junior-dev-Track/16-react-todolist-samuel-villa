@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useImmer } from 'use-immer';
 
 
-export function TaskForm() {
+export function TaskForm({ filter }) {
 
   const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem("todos");
@@ -19,6 +19,13 @@ export function TaskForm() {
   }, [todos]);
 
 
+  const filteredTodos = todos.filter(todo => {
+    if (filter === 'all') return true;
+    if (filter === 'done') return todo.done;
+    if (filter === 'todo') return !todo.done;
+    return true;
+  })
+ 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -72,7 +79,7 @@ export function TaskForm() {
         <button onClick={handleAddTodo}>Add</button>
       </form>
       <ul>
-        {todos.map((todo) => (
+        {filteredTodos.map(todo => (
           <li key={todo.id}>
             <input
               type="checkbox"
