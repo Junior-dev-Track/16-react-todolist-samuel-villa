@@ -10,8 +10,8 @@ export function Filter({ setFilter, filterCount }) {
             <h2>{ filterCount }</h2>
             <hr></hr>
             <button className="filter-btn" data-filter="all" onClick={handleFilterClick}>All</button>
-            <button className="filter-btn" data-filter="done" onClick={handleFilterClick}>Done</button>
             <button className="filter-btn" data-filter="todo" onClick={handleFilterClick}>To Do</button>
+            <button className="filter-btn" data-filter="done" onClick={handleFilterClick}>Done</button>
         </div>
     );
   }
