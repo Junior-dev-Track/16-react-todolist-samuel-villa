@@ -18,6 +18,9 @@ export function TaskForm({ filter, setFilterCount }) {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  useEffect(() => {
+    setFilterCount(filteredTodos.length)
+  });
 
   const filteredTodos = todos.filter(todo => {
     if (filter === 'all') return true;
@@ -25,7 +28,6 @@ export function TaskForm({ filter, setFilterCount }) {
     if (filter === 'todo') return !todo.done;
     return true;
   })
-  setFilterCount(filteredTodos.length)
  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);

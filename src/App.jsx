@@ -14,8 +14,8 @@ function App() {
   return (
     <>
     <Header />
-    <TaskForm filter={ filter } setFilterCount={ setFilterCount }/>
-    <Filter setFilter={ setFilter } filterCount={ filterCount }/>
+    <TaskForm filter={ filter } setFilterCount={ setFilterCount } />
+    <Filter setFilter={ setFilter } filterCount={ filterCount } />
     </>
   )
 }
