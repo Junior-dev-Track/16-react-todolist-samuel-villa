@@ -9,12 +9,13 @@ import { Filter } from './components/Filter.jsx'
 function App() {
 
   const [filter, setFilter] = useState('all');
+  const [filterCount, setFilterCount] = useState(0);
 
   return (
     <>
     <Header />
-    <TaskForm filter={ filter } />
-    <Filter setFilter={ setFilter } />
+    <TaskForm filter={ filter } setFilterCount={ setFilterCount }/>
+    <Filter setFilter={ setFilter } filterCount={ filterCount }/>
     </>
   )
 }

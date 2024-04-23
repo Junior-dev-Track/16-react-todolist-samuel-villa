@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useImmer } from 'use-immer';
 
 
-export function TaskForm({ filter }) {
+export function TaskForm({ filter, setFilterCount }) {
 
   const [todos, setTodos] = useState(() => {
     const savedTodos = localStorage.getItem("todos");
@@ -25,6 +25,7 @@ export function TaskForm({ filter }) {
     if (filter === 'todo') return !todo.done;
     return true;
   })
+  setFilterCount(filteredTodos.length)
  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);

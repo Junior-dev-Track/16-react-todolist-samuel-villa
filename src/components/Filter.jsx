@@ -1,4 +1,4 @@
-export function Filter({ setFilter }) {
+export function Filter({ setFilter, filterCount }) {
 
     const handleFilterClick = event => {
         const filterValue = event.target.getAttribute('data-filter');
@@ -7,7 +7,7 @@ export function Filter({ setFilter }) {
 
     return (
         <div className="filter">
-            <h2>3</h2>
+            <h2>{ filterCount }</h2>
             <hr></hr>
             <button className="filter-btn" data-filter="all" onClick={handleFilterClick}>All</button>
             <button className="filter-btn" data-filter="done" onClick={handleFilterClick}>Done</button>
