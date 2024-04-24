@@ -8,18 +8,29 @@ import { Filter } from './components/Filter.jsx'
 import { DeleteAll } from './components/DeleteAll.jsx'
 
 
+const LSKEY = "SamDoesStuff";
+
+
 function App() {
 
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem(LSKEY + ".todos");
+    if (savedTodos) {
+      return JSON.parse(savedTodos);
+    } else {
+      return []
+    }
+  });
   const [filter, setFilter] = useState('all');
   const [filterCount, setFilterCount] = useState(0);
 
   return (
     <>
     <Header />
-    <TaskForm filter={ filter } setFilterCount={ setFilterCount } />
+    <TaskForm todos={ todos } setTodos={ setTodos } filter={ filter } setFilterCount={ setFilterCount } LSKEY={ LSKEY }/>
     <div className='filter-delete-all'>
       <Filter setFilter={ setFilter } filterCount={ filterCount } />
-      <DeleteAll filter={ filter } setFilter={ setFilter } />
+      <DeleteAll todos={ todos } setTodos={ setTodos } />
     </div>
     </>
   )

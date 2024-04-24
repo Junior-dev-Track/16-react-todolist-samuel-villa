@@ -2,19 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useImmer } from 'use-immer';
 
 
-const LSKEY = "SamDoesStuff";
 
+export function TaskForm({ todos, setTodos, filter, setFilterCount, LSKEY }) {
 
-export function TaskForm({ filter, setFilterCount }) {
-
-  const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem(LSKEY + ".todos");
-    if (savedTodos) {
-      return JSON.parse(savedTodos);
-    } else {
-      return []
-    }
-  });
   const [inputValue, setInputValue] = useState('');
   const [nextId, setNextId] = useState(() => {
     if (todos.length > 0) {

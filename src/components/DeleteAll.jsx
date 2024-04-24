@@ -1,7 +1,8 @@
-export function DeleteAll({ filter, setFilter }) {
+export function DeleteAll({ todos, setTodos }) {
 
     const handleDeleteAllClick = event => {
-        
+        const undoneItems = todos.filter(item => !item.done)
+        setTodos(undoneItems)
     }
 
     return (
