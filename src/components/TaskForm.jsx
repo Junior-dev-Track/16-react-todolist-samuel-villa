@@ -7,7 +7,6 @@ export function TaskForm({ todos, setTodos, filter, setFilterCount, LSKEY }) {
   const [inputValue, setInputValue] = useState('');
   const [nextId, setNextId] = useState(() => {
     if (todos.length > 0) {
-      console.log(todos.length);
       return Math.max(...todos.map(todo => todo.id)) + 1;
     } else {
       return 0;
