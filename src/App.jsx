@@ -2,9 +2,10 @@ import { useState } from 'react'
 import { useImmer } from 'use-immer'
 import './App.css'
 import './scss/style.scss'
-import Header from './components/Header'
+import { Header } from './components/Header.jsx'
 import { TaskForm } from './components/TaskForm.jsx'
 import { Filter } from './components/Filter.jsx'
+
 
 function App() {
 

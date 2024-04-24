@@ -1,4 +1,4 @@
-export default function Header() {
+export function Header() {
     return (
       <header className="container">
         <h1>My ToDo App</h1>

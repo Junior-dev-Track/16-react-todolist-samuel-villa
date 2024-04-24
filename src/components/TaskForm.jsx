@@ -2,20 +2,34 @@ import React, { useState, useEffect } from "react";
 import { useImmer } from 'use-immer';
 
 
+const LSKEY = "SamDoesStuff";
+
+
 export function TaskForm({ filter, setFilterCount }) {
 
   const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem("todos");
+    const savedTodos = localStorage.getItem(LSKEY + ".todos");
     if (savedTodos) {
       return JSON.parse(savedTodos);
-    } 
+    } else {
+      return []
+    }
   });
   const [inputValue, setInputValue] = useState('');
-  const [nextId, setNextId] = useState(0);
+  const [nextId, setNextId] = useState(() => {
+    if (todos.length > 0) {
+      console.log(todos.length);
+      return Math.max(...todos.map(todo => todo.id)) + 1;
+    } else {
+      return 0;
+    }
+  })
+
 
   useEffect(() => {
-    // localStorage sync
-    localStorage.setItem("todos", JSON.stringify(todos));
+    if (todos) {
+      localStorage.setItem(LSKEY + ".todos", JSON.stringify(todos));
+    }
   }, [todos]);
 
   useEffect(() => {
@@ -28,7 +42,7 @@ export function TaskForm({ filter, setFilterCount }) {
     if (filter === 'todo') return !todo.done;
     return true;
   })
- 
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -44,9 +58,7 @@ export function TaskForm({ filter, setFilterCount }) {
       const newTodos = [...todos, newTodo]
       setTodos(newTodos);
       setInputValue('');
-
-      const newId = newTodo.id + 1;
-      setNextId(newId)
+      setNextId(nextId + 1);
     }
   };
 
