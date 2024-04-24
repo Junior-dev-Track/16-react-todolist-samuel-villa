@@ -5,6 +5,7 @@ import './scss/style.scss'
 import { Header } from './components/Header.jsx'
 import { TaskForm } from './components/TaskForm.jsx'
 import { Filter } from './components/Filter.jsx'
+import { SelectAll } from './components/SelectAll.jsx'
 import { DeleteAll } from './components/DeleteAll.jsx'
 
 
@@ -30,6 +31,7 @@ function App() {
     <TaskForm todos={ todos } setTodos={ setTodos } filter={ filter } setFilterCount={ setFilterCount } LSKEY={ LSKEY }/>
     <div className='filter-delete-all'>
       <Filter setFilter={ setFilter } filterCount={ filterCount } />
+      <SelectAll todos={ todos } setTodos={ setTodos } />
       <DeleteAll todos={ todos } setTodos={ setTodos } />
     </div>
     </>
