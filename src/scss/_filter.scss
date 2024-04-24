@@ -1,3 +1,20 @@
+.filter-delete-all {
+    display: flex;
+    flex-direction: row;
+    max-width: 70%;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+    gap: 20px;
+
+    .deleteAll {
+        border-radius: 15px;
+        padding: 20px;
+        background-color: #7F0000;
+    }
+}
+
+
 .filter {
     display: flex;
     justify-content: center;
@@ -5,7 +22,6 @@
     gap: 20px;
     background-color: #483248;
     padding: 20px;
-    max-width: 50%;
     margin: auto;
     border-radius: 15px;
 
