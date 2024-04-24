@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MdDeleteForever } from "react-icons/md";
+import { CiEdit } from "react-icons/ci";
 import { useImmer } from 'use-immer';
 
 
@@ -92,6 +93,7 @@ export function TaskForm({ todos, setTodos, filter, setFilterCount, LSKEY }) {
               checked={todo.done}
               onChange={() => handleCheck(todo.id)} />
             <label htmlFor={todo.id}>{todo.title}</label>
+            <button className="edit-item-btn" ><CiEdit /></button>
             <button className="delete-item-btn" onClick={() => handleDeleteTodo(todo.id)}><MdDeleteForever /></button>
           </li>
         ))}
