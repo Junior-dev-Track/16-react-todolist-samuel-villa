@@ -1,7 +1,7 @@
 .filter-delete-all {
     display: flex;
     flex-direction: row;
-    max-width: 70%;
+    max-width: 50%;
     justify-content: space-between;
     margin: auto;
     align-items: center;
@@ -18,21 +18,26 @@
         padding: 20px;
         background-color: #0047AB;
     }
-}
 
-
-.filter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    background-color: #483248;
-    padding: 20px;
-    margin: auto;
-    border-radius: 15px;
-
-    hr {
-        height: 50px;
-        width: 2px;
+    .filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        background-color: #483248;
+        padding: 20px;
+        border-radius: 15px;
+    
+        hr {
+            height: 50px;
+            width: 2px;
+        }
     }
 }
+
+
+@media (max-width: 1225px) {
+    .filter-delete-all {
+        flex-direction: column;
+    }
+  }
